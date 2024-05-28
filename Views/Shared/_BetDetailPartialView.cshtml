@@ -1,0 +1,57 @@
+﻿@model List<Betdetail>
+
+<style>
+    /* 自定義表格邊框樣式 */
+    .table-bordered {
+        border: 2px solid #000; /* 將邊框寬度設置為2px，顏色為黑色 */
+    }
+
+    /* 自定義表頭的背景顏色和文字顏色 */
+    .table-dark th {
+        background-color: #343a; /* 表頭背景色 */
+        color: #fff; /* 表頭文字顏色 */
+    }
+</style>
+<div>
+    <h2>BetInfo</h2>
+    <table class="table table-bordered" id="resultTable">
+        <thead class="table-dark">
+            <tr>
+           
+                <th scope="col">@Html.DisplayNameFor(model => model.First().Webid)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().Refno)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().UserName)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().Transid)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().Match)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().League)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().MatchResultId)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().Status)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().BetType)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().BetOption)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.First().Remark)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Webid)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Refno)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Transid)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Match)</td>
+                    <td>@Html.DisplayFor(modelItem => item.League)</td>
+                    <td>@Html.DisplayFor(modelItem => item.MatchResultId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.OsStatus)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BetType)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BetOption)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Remark)</td>
+                </tr>
+            }
+        
+        </tbody>
+    </table>
+</div>
+   
+

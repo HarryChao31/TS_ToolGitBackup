@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Betdetail>
+
+<!-- 在這裡生成表格 -->
+@{
+    ViewData["Title"] = "BetInfo Tool";
+}
+
+<style>
+    /* 自定義表格邊框樣式 */
+    .table-bordered {
+        border: 1px solid #000; /* 將邊框寬度設置為2px，顏色為黑色 */
+    }
+
+    /* 自定義表頭的背景顏色和文字顏色 */
+    .table-dark th {
+        background-color: #343a40; /* 表頭背景色 */
+        color: #fff; /* 表頭文字顏色 */
+    }
+</style>
+@using (Html.BeginForm("index", "Home", FormMethod.Post, new { id = "myForm" }))
+{
+    <label for="Webid">WebId:</label>
+    <input type="text" id="Webid" name="Webid">
+    <label for="Refno">Refno: </label>
+    <input type="text" id="Refno" name="Refno">
+    <br>
+    <br>
+    <button type="button" onclick="searchRefnoByWebIdAndUsername();searchSWErrorByWebIdAndUsername();" class="btn btn-primary">Search</button>
+    <br>
+    <br>
+}
+<div id="mypartial">
+    <script>
+        function searchRefnoByWebIdAndUsername() {
+            console.log("Searching Betdetail...");
+            var formData = {
+                Webid: $('#Webid').val(),
+                Refno: $('#Refno').val()
+            };
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Index", "Home")',
+                data: formData,
+                success: function (response) {
+                    $('#mypartial').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    </script>
+</div>
+
+<div id="ErrorPartial"></div>
+
+<script>
+    function searchSWErrorByWebIdAndUsername() {
+        console.log("Searching SeamlessWalletError...");
+        var formData = {
+            Webid: $('#Webid').val(),
+            Refno: $('#Refno').val()
+        };
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SWError", "Home")',
+            data: formData,
+            success: function (response) {
+                $('#ErrorPartial').html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+</script>
